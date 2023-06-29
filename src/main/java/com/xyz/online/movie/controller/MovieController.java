@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xyz.online.movie.model.Movie;
 import com.xyz.online.movie.service.MovieService;
 
+import io.micrometer.core.annotation.Timed;
+
 @RestController
 @RequestMapping("/api/movie/v1")
 public class MovieController {
@@ -37,6 +39,7 @@ public class MovieController {
 
 	}
 
+	@Timed(value = "myFirstApi",description = "the description of the my first api")
 	@GetMapping("/{id}")
 	public ResponseEntity<Movie> getMovieById(@PathVariable("id") Integer id) {
 		Movie movieById = movieService.getMovieById(id);
